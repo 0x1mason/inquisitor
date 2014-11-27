@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>tools/caps_meta.json</file>
+    </qresource>
+</RCC>

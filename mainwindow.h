@@ -2,9 +2,11 @@
 #define MAINWINDOW_H
 #include <QtScript/qscriptvalue.h>
 #include <QMainWindow>
-#include <map>
+#include <QString>
+#include <string>
 #include "cap.h"
 #include "helpers.h"
+
 
 namespace Ui {
 class MainWindow;
@@ -17,13 +19,19 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
-
+protected:
+    std::unordered_map<const QString, const Cap* > capMap;
 private:
     Ui::MainWindow *ui;
-    std::map<const QString, QSharedPointer<Cap> > capMap;
+
 
     void on_setup();
 
+    void populateCapForm(const QString &capGroup);
+      bool eventFilter(QObject *obj, QEvent *ev);
+     //   static bool eFilter(QObject *obj, QMouseEvent *ev, QObject *context);
+      //static bool mouseEventFilter(QObject *obj, QMouseEvent *ev, QObject *context);
+      static QWidget *getWidgetForType(const Cap *cap);
 };
 
 #endif // MAINWINDOW_H

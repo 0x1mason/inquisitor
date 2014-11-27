@@ -8,6 +8,7 @@ class Cap : public QObject
      Q_OBJECT
 public slots:
     void setValue(const QString &description);
+        void setValue(int);
 
 public:
     QString name() const;
@@ -22,6 +23,12 @@ public:
     QString description() const;
     void setDescription(const QString &description);
 
+    QString help() const;
+    void setHelp(const QString &help);
+
+    QString type() const;
+    void setType(const QString &type);
+
     QString value() const;
 
     void read(const QJsonObject &json);
@@ -32,6 +39,8 @@ private:
     QString _group;
     QString _friendlyName;
     QString _description;
+    QString _help;
+    QString _type;
     QString _value;
 };
 
