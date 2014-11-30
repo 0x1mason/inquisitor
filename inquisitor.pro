@@ -4,11 +4,11 @@
 #
 #-------------------------------------------------
 
-QT       += core gui script
+QT       += core gui script scripttools
 
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-contains(QT_CONFIG, scripttools): QT += scripttools
+
 
 CONFIG += c++11
 TARGET = inquisitor
@@ -19,11 +19,17 @@ LIBS += -stdlib=libc++ -mmacosx-version-min=10.7
 SOURCES += main.cpp\
         mainwindow.cpp \
     cap.cpp \
-    helpers.cpp
+    helpers.cpp \
+    appiumengine.cpp \
+    eventtimer.cpp \
+    xmlhttprequest.cpp
 
 HEADERS  += mainwindow.h \
     cap.h \
-    helpers.h
+    helpers.h \
+    appiumengine.h \
+    eventtimer.h \
+    xmlhttprequest.h
 
 FORMS    += mainwindow.ui
 

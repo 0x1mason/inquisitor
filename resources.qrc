@@ -1,5 +1,7 @@
 <RCC>
     <qresource prefix="/">
         <file>tools/caps_meta.json</file>
+        <file>tools/webdriver.js</file>
+        <file>tools/env.js</file>
     </qresource>
 </RCC>

@@ -6,7 +6,7 @@
 #include <QTextBrowser>
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-
+#include "appiumengine.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -29,6 +29,7 @@ void MainWindow::on_setup()
     populateCapForm("android");
     ui->androidScrollArea->setWidgetResizable(true);
     //ui->androidScrollAreaContents->res
+    new AppiumEngine(this);
 }
 
 
