@@ -1,39 +1,39 @@
 #ifndef TIMER_H
 #define TIMER_H
-#include <QtScript/QScriptEngine>
+#include <QJSEngine>
  #include <QTimerEvent>
-#include <QScriptValue>
-#include <QScriptEngine>
+
+#include <QJSValue>
 #include <QObject>
 class EventTimer: public QObject
 {
          Q_OBJECT
 public:
-    EventTimer(QScriptEngine *engine);
+    EventTimer(QJSEngine *engine);
  //       explicit EventTimer(QObject *parent = 0);
-    static QScriptValue setTimeout(QScriptContext *context, QScriptEngine *engine);
-    static QScriptValue clearTimeout(QScriptContext *context, QScriptEngine *engine);
-    static QScriptValue setInterval(QScriptContext *context, QScriptEngine *engine);
-    static QScriptValue clearInterval(QScriptContext *context, QScriptEngine *engine);
+    static QJSValue setTimeout(QJSValue *, QJSValue *);
+    static QJSValue clearTimeout(QJSValue *, QJSValue *);
+    static QJSValue setInterval(QJSValue *, QJSValue *);
+    static QJSValue clearInterval(QJSValue *, QJSValue *);
 
 protected:
         void timerEvent(QTimerEvent *event);
 
 private:
-        QScriptEngine *engine;
+        QJSEngine *engine;
     static const QString TIMER_STATE_TOKEN;
-    int doSetInterval(const QScriptValue &expression, int delay);
+    int doSetInterval(const QJSValue &expression, int delay);
     void doClearInterval(int timerId);
 
-    int doSetTimeout(const QScriptValue &expression, int delay);
+    int doSetTimeout(const QJSValue &expression, int delay);
     void doClearTimeout(int timerId);
 
-    QHash<int, QScriptValue> intervalHash;
-    QHash<int, QScriptValue> timeoutHash;
-    static void tryEmitScriptError(QScriptEngine *engine);
-    void scriptException(const QScriptValue &exception);
+    QHash<int, QJSValue> intervalHash;
+    QHash<int, QJSValue> timeoutHash;
+    static void tryEmitScriptError(QJSEngine *engine);
+    void scriptException(const QJSValue &exception);
 
-    static EventTimer *getTimerState(QScriptEngine *engine);
+    static EventTimer *getTimerState(QJSEngine *engine);
 signals:
     //void scriptError(const QScriptValue &error);
 };

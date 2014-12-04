@@ -4,7 +4,7 @@
 #include <QtDebug>
 const QString EventTimer::TIMER_STATE_TOKEN = "_$$timer_state$$_";
 
-EventTimer::EventTimer(QScriptEngine *engine): QObject(engine), engine(engine), intervalHash(), timeoutHash()
+EventTimer::EventTimer(QJSEngine *engine): QObject(engine), engine(engine), intervalHash(), timeoutHash()
 {
 
 }
@@ -16,9 +16,9 @@ EventTimer::EventTimer(QScriptEngine *engine): QObject(engine), engine(engine), 
 
 //}
 
-int EventTimer::doSetTimeout(const QScriptValue &expression, int delay)
+int EventTimer::doSetTimeout(const QJSValue &expression, int delay)
 {
-    if (expression.isString() || expression.isFunction()) {
+    if (expression.isString() || expression.isCallable()) {
         int timerId = startTimer(delay);
         timeoutHash.insert(timerId, expression);
         return timerId;
@@ -34,9 +34,10 @@ void EventTimer::doClearTimeout(int timerId)
 }
 
 
-int EventTimer::doSetInterval(const QScriptValue &expression, int delay)
+int EventTimer::doSetInterval(const QJSValue &expression, int delay)
 {
-    if (expression.isString() || expression.isFunction()) {
+
+    if (expression.isString() || expression.isCallable()) {
         int timerId = startTimer(delay);
         intervalHash.insert(timerId, expression);
         return timerId;
@@ -55,15 +56,16 @@ void EventTimer::doClearInterval(int timerId)
 void EventTimer::timerEvent(QTimerEvent *event)
 {
     int id = event->timerId();
-    QScriptValue expression = intervalHash.value(id);
-    if (!expression.isValid()) {
+    auto expression = intervalHash.value(id);
+
+    if (expression.isNull()) {
         expression = timeoutHash.value(id);
-        if (expression.isValid())
+        if (!expression.isNull())
             this->killTimer(id);
     }
     if (expression.isString()) {
         engine->evaluate(expression.toString());
-    } else if (expression.isFunction()) {
+    } else if (expression.isCallable()) {
         expression.call();
     }
     tryEmitScriptError(engine);
@@ -71,7 +73,7 @@ void EventTimer::timerEvent(QTimerEvent *event)
 
 
 
-void EventTimer::scriptException(const QScriptValue & exception) {
+void EventTimer::scriptException(const QJSValue & exception) {
 //    qDebug() << "ScriptException:" << this->engine->uncaughtExceptionLineNumber() << exception.toString();
 //    qDebug() << "Backtrace:";
 //    foreach( QString row, this->engine->uncaughtExceptionBacktrace() ) {
@@ -81,7 +83,7 @@ void EventTimer::scriptException(const QScriptValue & exception) {
 }
 
 
-EventTimer* EventTimer::getTimerState(QScriptEngine *engine)
+EventTimer* EventTimer::getTimerState(QJSEngine *engine)
 {
     auto timeObj = engine->globalObject().property(TIMER_STATE_TOKEN);
     if (!timeObj.isObject())
@@ -93,37 +95,37 @@ EventTimer* EventTimer::getTimerState(QScriptEngine *engine)
     return qobject_cast<EventTimer*>(timeObj.toQObject());
 }
 
-QScriptValue EventTimer::setTimeout(QScriptContext *context, QScriptEngine *engine)
+QJSValue EventTimer::setTimeout(QJSValue *a, QJSValue *b)
 {
-auto timer = getTimerState(engine);
-return timer ->doSetTimeout(context->argument(0), context->argument(1).toInteger());
+auto timer = getTimerState(a->engine());
+return timer ->doSetTimeout(*(a), b->toInt());
 }
 
 
-QScriptValue EventTimer::clearTimeout(QScriptContext *context, QScriptEngine *engine)
+QJSValue EventTimer::clearTimeout(QJSValue *a, QJSValue *b)
 {
-    auto timer = getTimerState(engine);
-   timer ->doClearTimeout(context->argument(0).toInteger());
+    auto timer = getTimerState(a->engine());
+   timer ->doClearTimeout(a->toInt());
 }
 
 
-QScriptValue EventTimer::setInterval(QScriptContext *context, QScriptEngine *engine)
+QJSValue EventTimer::setInterval(QJSValue *a, QJSValue *b)
 {
-    auto timer = getTimerState(engine);
-return timer ->doSetInterval(context->argument(0), context->argument(1).toInteger());
+    auto timer = getTimerState(a->engine());
+return timer ->doSetInterval(*(a), a->toInt());
 }
 
 
-QScriptValue EventTimer::clearInterval(QScriptContext *context, QScriptEngine *engine)
+QJSValue EventTimer::clearInterval(QJSValue *a, QJSValue *b)
 {
-    auto timer = getTimerState(engine);
-timer ->doClearInterval(context->argument(0).toInteger());
+    auto timer = getTimerState(a->engine());
+timer ->doClearInterval(a->toInt());
 }
 
 
-void EventTimer::tryEmitScriptError(QScriptEngine *engine)
+void EventTimer::tryEmitScriptError(QJSEngine *engine)
 {
-   if (engine->hasUncaughtException())
-       qDebug() << engine->uncaughtException().toString();
+   //if (engine->hasUncaughtException())
+   //    qDebug() << engine->->uncaughtException().toString();
    //    emit scriptError(engine->uncaughtException());
 }

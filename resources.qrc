@@ -3,5 +3,6 @@
         <file>tools/caps_meta.json</file>
         <file>tools/webdriver.js</file>
         <file>tools/env.js</file>
+        <file>tools/appium.ico</file>
     </qresource>
 </RCC>

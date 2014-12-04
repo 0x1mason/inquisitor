@@ -1,8 +1,8 @@
 #ifndef APPIUMENGINE_H
 #define APPIUMENGINE_H
-#include <QtScript/QScriptEngine>
+#include <QJSEngine>
  #include <QTimerEvent>
-
+#include <qjsengine.h>
 #include <QObject>
 #include <QJsonObject>
 #include "eventtimer.h"
@@ -14,13 +14,13 @@ public:
     explicit AppiumEngine(QObject *parent = 0);
     void openDriver(QJsonObject &caps);
 signals:
-    void scriptError(const QScriptValue &error);
+    void scriptError(const QJSValue &error);
 public slots:
 
 private:
 static EventTimer *timer;
-
-    QScriptEngine engine;
+static QJSValue new_XmlHttpRequest();
+    QJSEngine engine;
 
     void tryEmitScriptError();
     void startWebDriver();

@@ -70,8 +70,12 @@ void MainWindow::populateCapForm(const QString &capGroup)
         if(i->second->group() == capGroup || i->second->group() == "common") {
             QWidget* widget = getWidgetForType(i->second);
             widget->setObjectName(capGroup + "_" + i->first);
+            ui->androidForm->setSpacing(7);
             ui->androidForm->addRow(i->second->friendlyName(), widget );
             widget->installEventFilter(this);
+            auto label = ui->androidForm->labelForField(widget);
+            QFont f( "Roboto", 14, QFont::Light);
+            label->setFont(f);
         }
     }
 }

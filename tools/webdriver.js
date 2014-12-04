@@ -1,3 +1,6 @@
+var exports = {};
+var XMLHttpRequest = function(){};
+
 (function(exports){var COMPILED = !0, goog = goog || {};
 goog.global = this;
 goog.exportPath_ = function(a, b, c) {
@@ -4133,6 +4136,7 @@ webdriver.WebDriver.attachToSession = function(a, b) {
   return webdriver.WebDriver.acquireSession_(a, (new webdriver.Command(webdriver.CommandName.DESCRIBE_SESSION)).setParameter("sessionId", b), "WebDriver.attachToSession()")
 };
 webdriver.WebDriver.createSession = function(a, b) {
+
   return webdriver.WebDriver.acquireSession_(a, (new webdriver.Command(webdriver.CommandName.NEW_SESSION)).setParameter("desiredCapabilities", b), "WebDriver.createSession()")
 };
 webdriver.WebDriver.acquireSession_ = function(a, b, c) {
@@ -4752,10 +4756,9 @@ webdriver.http.CorsClient.isAvailable = function() {
   return"undefined" !== typeof XDomainRequest || "undefined" !== typeof XMLHttpRequest
 };
 webdriver.http.CorsClient.prototype.send = function(a, b) {
-          debugger;
   try {
 
-    var c = new ("undefined" !== typeof XDomainRequest ? XDomainRequest : XMLHttpRequest);
+    var c = new_XMLHttpRequest();
     c.open("POST", this.url_, !0);
     c.onload = function() {
       b(null, webdriver.http.Response.fromXmlHttpRequest(c))
@@ -4785,9 +4788,8 @@ webdriver.Builder.prototype.getSession = function() {
   return this.sessionId_
 };
 webdriver.Builder.prototype.build = function() {
-    debugger;
   var a = new webdriver.http.CorsClient(this.getServerUrl() || webdriver.AbstractBuilder.DEFAULT_SERVER_URL), a = new webdriver.http.Executor(a);
-  return this.getSession() ? webdriver.WebDriver.attachToSession(a, this.getSession()) : webdriver.WebDriver.createSession(a, this.getCapabilities())
+  return webdriver.WebDriver.createSession(a, this.getCapabilities())
 };
 goog.net = {};
 goog.net.XmlHttpFactory = function() {
@@ -4829,7 +4831,7 @@ goog.net.DefaultXmlHttpFactory = function() {
 goog.inherits(goog.net.DefaultXmlHttpFactory, goog.net.XmlHttpFactory);
 goog.net.DefaultXmlHttpFactory.prototype.createInstance = function() {
   var a = this.getProgId_();
-  return a ? new ActiveXObject(a) : new XMLHttpRequest
+  return a ? new ActiveXObject(a) : new_XMLHttpRequest
 };
 goog.net.DefaultXmlHttpFactory.prototype.internalGetOptions = function() {
   var a = {};
@@ -4896,3 +4898,4 @@ exports.process = {getEnv:webdriver.process.getEnv, setEnv:webdriver.process.set
 exports.promise = webdriver.promise;
 exports.stacktrace = webdriver.stacktrace;
 })(typeof exports===typeof {}&&exports===this?exports:this.webdriver=this.webdriver||{})
+

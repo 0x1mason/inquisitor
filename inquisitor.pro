@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui script scripttools
+QT       += core gui qml
 
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
@@ -22,6 +22,7 @@ SOURCES += main.cpp\
     helpers.cpp \
     appiumengine.cpp \
     eventtimer.cpp \
+    serverform.cpp \
     xmlhttprequest.cpp
 
 HEADERS  += mainwindow.h \
@@ -29,9 +30,11 @@ HEADERS  += mainwindow.h \
     helpers.h \
     appiumengine.h \
     eventtimer.h \
+    serverform.h \
     xmlhttprequest.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    serverform.ui
 
 OTHER_FILES +=
 
