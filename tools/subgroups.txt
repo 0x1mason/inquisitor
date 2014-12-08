@@ -1,0 +1,20 @@
+Everything in Application except:
+
+Launch Device:
+Launch AVD
+Device Name
+Device Ready Timeout -- deviceReadyTimeout
+Arguments
+
+Environment:
+
+Android SDK
+Bootstrap Port
+Selendroid Port
+Chrome Port
+keystorePath
+keystorePassword
+keyAlias
+keyPassword
+
+Keystore Settings:

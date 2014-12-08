@@ -1,8 +1,10 @@
 <RCC>
     <qresource prefix="/">
-        <file>tools/caps_meta.json</file>
         <file>tools/webdriver.js</file>
         <file>tools/env.js</file>
         <file>tools/appium.ico</file>
+        <file>tools/devices.json</file>
+        <file>tools/caps_android_meta.json</file>
+        <file>tools/caps_iOS_meta.json</file>
     </qresource>
 </RCC>

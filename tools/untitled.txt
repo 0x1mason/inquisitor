@@ -1,0 +1,60 @@
+[NoInterfaceObject]
+interface XMLHttpRequestEventTarget : EventTarget {
+  // event handlers
+  attribute EventHandler onloadstart;
+  attribute EventHandler onprogress;
+  attribute EventHandler onabort;
+  attribute EventHandler onerror;
+  attribute EventHandler onload;
+  attribute EventHandler ontimeout;
+  attribute EventHandler onloadend;
+};
+
+interface XMLHttpRequestUpload : XMLHttpRequestEventTarget {
+
+};
+
+enum XMLHttpRequestResponseType {
+  "",
+  "arraybuffer",
+  "blob",
+  "document",
+  "json",
+  "text"
+};
+
+
+class XMLHttpRequest {
+  // event handler
+	public signal:
+  void onreadystatechange();
+
+  // states
+  const unsigned short UNSENT = 0;
+  const unsigned short OPENED = 1;
+  const unsigned short HEADERS_RECEIVED = 2;
+  const unsigned short LOADING = 3;
+  const unsigned short DONE = 4;
+  int readyState;
+
+  // request
+  void open(QJSValue method, QJSValue url);
+  void open(QJSValue method, QJSValue url, boolean async, QJSValue username = null, QJSValue password = null);
+  void setRequestHeader(QJSValue header, QJSValue value);
+   int timeout;
+  boolean withCredentials;
+  //readonly attribute XMLHttpRequestUpload upload;
+  void send(QJSValue data);// = null);
+  void abort();
+
+  // response
+  int status;
+  QJSValue statusText;
+ QJSValue getResponseHeader(QJSValue header);
+  QJSValue getAllResponseHeaders();
+  void overrideMimeType(QJSValue mime);
+  QJSValue responseType;
+  QJSValue response;
+  QJSValue responseText;
+  QJSValue responseXML;
+};

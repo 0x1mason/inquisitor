@@ -7,6 +7,7 @@
 #include "cap.h"
 #include "helpers.h"
 
+using namespace std;
 
 namespace Ui {
 class MainWindow;
@@ -32,6 +33,7 @@ private:
      //   static bool eFilter(QObject *obj, QMouseEvent *ev, QObject *context);
       //static bool mouseEventFilter(QObject *obj, QMouseEvent *ev, QObject *context);
       static QWidget *getWidgetForType(const Cap *cap);
+      map<string, string> getCapKvps();
 };
 
 #endif // MAINWINDOW_H

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>609</height>
+    <width>980</width>
+    <height>625</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -35,7 +35,7 @@
    <string>Inquisitor</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="resources.qrc">
+   <iconset>
     <normaloff>:/tools/appium.ico</normaloff>:/tools/appium.ico</iconset>
   </property>
   <widget class="QWidget" name="centralWidget">
@@ -52,7 +52,7 @@
        <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="androidTab">
        <property name="sizePolicy">
@@ -83,8 +83,8 @@
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>466</width>
-               <height>466</height>
+               <width>646</width>
+               <height>486</height>
               </rect>
              </property>
              <property name="sizePolicy">
@@ -144,7 +144,11 @@
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Roboto'; font-size:15pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.Helvetica Neue DeskInterface'; font-size:13pt;&quot;&gt;f&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:medium; font-weight:96;&quot;&gt;Cap Description&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:12px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:13pt;&quot;&gt;foo&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:13pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:medium; font-weight:96;&quot;&gt;Example&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:12px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'DejaVu Sans Mono'; font-size:13pt;&quot;&gt;An Example1234&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
            </property>
            <property name="placeholderText">
             <string/>
@@ -169,26 +173,37 @@ p, li { white-space: pre-wrap; }
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tab_2">
+      <widget class="QWidget" name="iosTab">
        <attribute name="title">
         <string>iOS</string>
        </attribute>
-       <widget class="QWidget" name="verticalLayoutWidget">
+       <widget class="QWidget" name="horizontalLayoutWidget">
         <property name="geometry">
          <rect>
-          <x>220</x>
-          <y>10</y>
-          <width>160</width>
-          <height>80</height>
+          <x>0</x>
+          <y>0</y>
+          <width>951</width>
+          <height>521</height>
          </rect>
         </property>
-        <layout class="QVBoxLayout" name="verticalLayout_2"/>
+        <layout class="QHBoxLayout" name="horizontalLayout_4"/>
        </widget>
       </widget>
       <widget class="QWidget" name="tab_3">
        <attribute name="title">
         <string>Session</string>
        </attribute>
+       <widget class="QWidget" name="horizontalLayoutWidget_2">
+        <property name="geometry">
+         <rect>
+          <x>-1</x>
+          <y>-1</y>
+          <width>881</width>
+          <height>521</height>
+         </rect>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_5"/>
+       </widget>
       </widget>
      </widget>
     </item>
@@ -208,15 +223,15 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>980</width>
      <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFoo">
     <property name="geometry">
      <rect>
-      <x>-1565</x>
-      <y>125</y>
+      <x>350</x>
+      <y>100</y>
       <width>128</width>
       <height>65</height>
      </rect>
@@ -235,8 +250,6 @@ p, li { white-space: pre-wrap; }
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources>
-  <include location="resources.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

@@ -1,4 +1,3 @@
-,Capability,Description,Values
 common,automationName,Which automation engine to use,Appium (default) or Selendroid
 common,platformName,Which mobile OS platform to use,"iOS, Android, or FirefoxOS"
 common,platformVersion,Mobile OS version,"e.g., 7.1, 4.4"
@@ -26,11 +25,6 @@ common,noReset,Don’t reset app state before this session. Default false,"true,
 common,fullReset,"(iOS) Delete the entire simulator folder. (Android) Reset app state by 
 uninstalling app instead of clearing app data. On Android, this will also 
 remove the app after the session is complete. Default false","true, false"
-,,,
-,,,
-,,,
-,,,
-,Capability,Description,Values
 android,appActivity,Activity name for the Android activity you want to launch from your package,"MainActivity, .Settings"
 android,appPackage,Java package of the Android app you want to run,"com.example.android.myApp, com.android.settings"
 android,appWaitActivity,Activity name for the Android activity you want to wait for,SplashActivity
@@ -77,11 +71,6 @@ capability can speed up test execution, since Accessibility commands will
 run faster ignoring some elements. The ignored elements will not be 
 findable, which is why this capability has also been implemented as a 
 toggle-able *setting* as well as a capability. Defaults to false",true or false
-,,,
-,,,
-,,,
-,,,
-,Capability,Description,Values
 iOS,calendarFormat,(Sim-only) Calendar format to set for the iOS Simulator,e.g. gregorian
 iOS,bundleId,"Bundle ID of the app under test. Useful for starting an app on a real 
 device or for using other caps which require the bundle ID during test 

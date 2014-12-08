@@ -1,0 +1,214 @@
+
+SPEC:
+[
+                {
+                  "device": "touch",
+                  "id": "1",
+                  "actions": [
+                            { "name": "pointerDown",
+                              "ELEMENT": "element1"
+                            },
+                            { "name": "pause",
+                              "duration": 0
+                            },
+                            { "name": "pointerUp"
+                            }
+                  ]
+                },
+                {
+                  "device": "touch",
+                  "id": "2",
+                  "actions": [
+                            { "name": "pointerDown",
+                              "ELEMENT": "element2"
+                            },
+                            { "name": "pointerMove",
+                              "ELEMENT": "element3"
+                            },
+                            { "name": "pointerUp"
+                            }
+                  ]
+                }
+              ]
+
+
+WITH WAIT:
+
+{
+  "actions":[
+    [
+      {
+        "action":"press",
+        "options":{
+          "element":"1"
+        }
+      },
+      {
+        "action":"moveTo",
+        "options":{
+          "x":10,
+          "y":0,
+          "element":"1"
+        }
+      },
+      {
+        "action":"moveTo",
+        "options":{
+          "x":10,
+          "y":-75,
+          "element":"1"
+        }
+      },
+      {
+        "action":"wait",
+        "options":{
+          "ms":1000
+        }
+      },
+      {
+        "action":"moveTo",
+        "options":{
+          "x":10,
+          "y":-350,
+          "element":"1"
+        }
+      },
+      {
+        "action":"release",
+        "options":{
+
+        }
+      }
+    ],
+    [
+      {
+        "action":"press",
+        "options":{
+          "element":"2"
+        }
+      },
+      {
+        "action":"moveTo",
+        "options":{
+          "x":10,
+          "y":100,
+          "element":"2"
+        }
+      },
+      {
+        "action":"moveTo",
+        "options":{
+          "x":10,
+          "y":-300,
+          "element":"2"
+        }
+      },
+      {
+        "action":"wait",
+        "options":{
+          "ms":500
+        }
+      },
+      {
+        "action":"moveTo",
+        "options":{
+          "x":10,
+          "y":-600,
+          "element":"2"
+        }
+      },
+      {
+        "action":"release",
+        "options":{
+
+        }
+      }
+    ]
+  ]
+}
+
+
+NO WAIT:
+2014-12-01 19:25:01:687 - info: --> POST /wd/hub/session/09a40631-d4a3-4f79-bceb-c53893988c5d/touch/multi/perform {
+  "elementId":"1",
+  "actions":[
+    [
+      {
+        "action":"press",
+        "options":{
+          "element":"1"
+        }
+      },
+      {
+        "action":"moveTo",
+        "options":{
+          "x":10,
+          "y":0,
+          "element":"1"
+        }
+      },
+      {
+        "action":"moveTo",
+        "options":{
+          "x":10,
+          "y":-75,
+          "element":"1"
+        }
+      },
+      {
+        "action":"moveTo",
+        "options":{
+          "x":10,
+          "y":-150,
+          "element":"1"
+        }
+      },
+      {
+        "action":"release",
+        "options":{
+
+        }
+      }
+    ],
+    [
+      {
+        "action":"press",
+        "options":{
+          "element":"2"
+        }
+      },
+      {
+        "action":"moveTo",
+        "options":{
+          "x":10,
+          "y":0,
+          "element":"2"
+        }
+      },
+      {
+        "action":"moveTo",
+        "options":{
+          "x":10,
+          "y":-300,
+          "element":"2"
+        }
+      },
+      {
+        "action":"moveTo",
+        "options":{
+          "x":10,
+          "y":-600,
+          "element":"2"
+        }
+      },
+      {
+        "action":"release",
+        "options":{
+
+        }
+      }
+    ]
+  ]
+}
+
+2014-12-01 19:25:02:472 - info: [debug] [BOOTSTRAP] [debug] Got data from client: {"cmd":"action","action":"element:performMultiPointerGesture","params":{"elementId":"1","actions":[[{"touch":{"x":120,"y":529.5},"time":0.005},{"touch":{"x":10,"y":259},"time":0.01},{"touch":{"x":10,"y":184},"time":0.015},{"touch":{"x":10,"y":109},"time":0.02}],[{"touch":{"x":360,"y":529.5},"time":0.005},{"touch":{"x":250,"y":259},"time":0.01},{"touch":{"x":250,"y":-41},"time":0.015},{"touch":{"x":250,"y":-341},"time":0.02}]]}}

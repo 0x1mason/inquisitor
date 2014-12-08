@@ -6,7 +6,17 @@
 #include <QTextBrowser>
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "appiumengine.h"
+#include "deviceform.h"
+#include "serverform.h"
+#include "appiumclient.h"
+#include <map>
+#include <string>
+#include <memory>
+
+#include "seleniumpp/webdriver.hpp"
+#include "seleniumpp/capabilities.hpp"
+
+using namespace std;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -15,6 +25,15 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     on_setup();
+   // c = new AppiumClient(QUrl(QStringLiteral("ws://localhost:4723")), this);
+    WebDriver* s = new WebDriver("http://localhost:4723/wd/hub", false);
+
+    //creates new selenium session.
+    auto caps = getCapKvps();
+   Session* sess = s->createSession(&caps);
+
+    //goes to the google home page.
+   // sess->url("http://www.google.com");
 }
 
 MainWindow::~MainWindow()
@@ -29,7 +48,8 @@ void MainWindow::on_setup()
     populateCapForm("android");
     ui->androidScrollArea->setWidgetResizable(true);
     //ui->androidScrollAreaContents->res
-    new AppiumEngine(this);
+    ui->horizontalLayout_4->addWidget(new DeviceForm(ui->iosTab));
+    ui->horizontalLayout_5->addWidget(new ServerForm(ui->tab_3));
 }
 
 
@@ -62,6 +82,26 @@ bool MainWindow::eventFilter(QObject *sender, QEvent *ev)
     {
         return false;
     }
+}
+
+
+map<string, string> MainWindow::getCapKvps() {
+    map<string, string> kvps;
+
+    for (std::unordered_map<const QString, const Cap* >::iterator i = capMap.begin(); i != capMap.end(); ++i) {
+        stringstream ss;
+        if (!i->second->value().isNull() && !i->second->value().isEmpty()) {
+            if (i->second->type() == "string") {
+                ss << "\"" << i->second->value().toStdString() << "\"";
+            } else {
+                ss << i->second->value().toStdString();
+            }
+            qDebug() << ss.str().c_str();
+            kvps[i->first.toStdString()] = ss.str();
+        }
+    }
+return kvps;
+   // return unique_ptr<map<string, string>>(&kvps);
 }
 
 void MainWindow::populateCapForm(const QString &capGroup)
